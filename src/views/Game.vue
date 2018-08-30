@@ -9,10 +9,9 @@
 
 <script>
 // @ is an alias to /src
-import playerCards from '@/components/HelloWorld.vue'
-import enemyCards from '@/components/HelloWorld.vue'
+import playerCards from '@/components/Player.vue'
+import enemyCards from '@/components/Opponent.vue'
 
-import Cards from "@/components/Cards"
 export default {
   name: 'home',
   components: {
@@ -20,12 +19,12 @@ export default {
     enemyCards
   }
     computed: {
-      cards() {
-        return this.$store.state.cards
-      }
-      playerCard(){
-        return this.$store.state.cards
-      }
+      // cards() {
+      //   return this.$store.state.cards
+      // }
+      // playerCard(){
+      //   return this.$store.state.cards
+      // }
     }
 }
 </script>
