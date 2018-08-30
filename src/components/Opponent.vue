@@ -1,5 +1,6 @@
 <template>
     <div class="opponents">
+        <!--<img v-if="opponent.opponentCards.hand.health" src=""/>-->
         <div class="opponents" v-for="opponent in opponents" :key="opponent.id" @click="setCard">
             {{opponent.opponentCards.hand.name}}
             {{opponent.opponentCards.hand.img}}

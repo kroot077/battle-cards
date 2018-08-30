@@ -1,30 +1,45 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <player-cards />
-    <enemy-cards />
+    <div v-if="game.id">
+      <player/>
+      <opponent/>
+    <!-- <button @click="Fight"></button> -->
+    </div>
+    <form @submit.prevent="startGame" v-else>
+      <input type="text" v-model="gameConfig.playerName">
+      <button type="submit">Start Game</button>
+    </form>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import playerCards from '@/components/Player.vue'
-import enemyCards from '@/components/Opponent.vue'
+import player from '@/components/Player.vue'
+import opponent from '@/components/Opponent.vue'
 
 export default {
-  name: 'home',
-  components: {
-    playerCards,
-    enemyCards
-  }
-    computed: {
-      // cards() {
-      //   return this.$store.state.cards
-      // }
-      // playerCard(){
-      //   return this.$store.state.cards
-      // }
+  name: 'Game',
+  data(){
+    return{
+      gameConfig: {
+        opponents: 1,
+        set: 2
+      }
     }
+  },
+  computed: {
+    game() {
+      return this.$store.state.game
+    }
+  },
+  methods: {
+    startGame() {
+      this.$store.dispatch("startGame", this.gameConfig)
+    }
+  },
+  components: {
+      player,
+      opponent
+  }
 }
 </script>

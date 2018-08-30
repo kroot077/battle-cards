@@ -1,49 +1,43 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Axios from 'axios'
-import Player from '@/components/Player'
-import Opponent from '@/components/Opponent'
-import Card from '@/components/Card'
+import axios from 'axios'
+import router from './router'
 
 let api = axios.create({
-  baseUrl: '',
+  baseURL: 'https://inspire-server.herokuapp.com/cards',
   timeout: 3000
 })
 
-let playerCards = axios.create({
-  baseUrl: '',
-  timeout: 3000
-})
+// let playerCards = axios.create({
+//   baseUrl: '',
+//   timeout: 3000
+// })
 
-let eneymCards = axios.create({
-  baseUrl: '',
-  timeout: 3000
-})
+// let enemyCards = axios.create({
+//   baseUrl: '',
+//   timeout: 3000
+// })
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    player: new Player ({
-
-    }),
-    opponent: new Opponent ({
-
-    }),
-    card: new Card ({
-      "id": "",
-
-    })
+    game: {}
   },
   mutations: {
-    setHealth() {
-
+    setPlayerCards(state, playerCards) {
+      state.playerCards = playerCards
     },
-    setCard() {
-
+    setGame(state, game) {
+      state.game = game
     }
   },
   actions: {
+    startGame({commit, dispatch}, gameConfig/*can name anything*/) {
+      api.post('', gameConfig).then(res => {
+        commit('setGame', res.data)
+      })
+    },
     getCards({commit, dispatch}) {
       api.get('cards')
       cards.get('').then(res=> {

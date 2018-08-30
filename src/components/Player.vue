@@ -1,15 +1,16 @@
 <template>
-    <div class="players">
-        <div class="players" v-for="player in players" :key="player.id" @click="setCard">
-            {{player.players.hand.name}}
-            {{player.players.hand.img}}
+    <div class="player">
+        {{player.name}}
+        <div class="playerCards" v-for="player in playerCards" :key="player.id" @click="setCard(player)">
+            {{player.playerCards.hand.name}}
+            {{player.playerCards.hand.img}}
             <div>
-                {{player.players.hand.attack}}
-                {{player.players.hand.health}}
-                {{player.players.hand.defense}}
+                {{player.playerCards.hand.attack}}
+                {{player.playerCards.hand.health}}
+                {{player.playerCards.hand.defense}}
             </div>
         </div>
-        <!--<div v-if="total = 0">
+        <!--<div v-if="player.playerCards.total = 0">
             <button></button>
         </div>-->
     </div>
@@ -22,12 +23,12 @@
         },
         computed: {
             playerCards() {
-                
+                return this.$store.state.playerCards
             }
         },
         methods: {
-            setCard() {
-                this.$store.dispatch("setCard", player)
+            setPlayer() {
+                this.$store.dispatch("setPlayer", player)
             },
             defeatedCard() {
                 this.$store.remainingCards--
