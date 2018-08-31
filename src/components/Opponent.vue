@@ -1,14 +1,11 @@
 <template>
-    <div class="opponents">
-        <!--<img v-if="opponent.opponentCards.hand.health" src=""/>-->
-        <div class="opponents" v-for="opponent in opponents" :key="opponent.id" @click="setCard">
-            {{opponent.opponentCards.hand.name}}
-            {{opponent.opponentCards.hand.img}}
-            <div>
-                {{opponent.opponentCards.hand.attack}}
-                {{opponent.opponentCards.hand.health}}
-                {{opponent.opponentCards.hand.defense}}
-            </div>
+    <div class="opponent">
+        {{opponent.name}}
+        {{opponent.img}}
+        <div class="opponentCards" v-for="opponent in opponentCards" :key="opponent.id" @click="setCard(opponent)">
+            {{opponent.attack}}
+            {{opponent.health}}
+            {{opponent.defense}}
         </div>
     </div>
 </template>

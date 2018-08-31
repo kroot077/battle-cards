@@ -8,28 +8,23 @@ let api = axios.create({
   timeout: 3000
 })
 
-// let playerCards = axios.create({
-//   baseUrl: '',
-//   timeout: 3000
-// })
-
-// let enemyCards = axios.create({
-//   baseUrl: '',
-//   timeout: 3000
-// })
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    game: {}
+    game: {},
+    playerCards: {},
+    opponentCards: {}
   },
   mutations: {
+    setGame(state, game) {
+      state.game = game
+    },
     setPlayerCards(state, playerCards) {
       state.playerCards = playerCards
     },
-    setGame(state, game) {
-      state.game = game
+    setOpponentCards(state, opponentCards) {
+      state.opponentCards = opponentCards
     }
   },
   actions: {
@@ -38,10 +33,9 @@ export default new Vuex.Store({
         commit('setGame', res.data)
       })
     },
-    getCards({commit, dispatch}) {
-      api.get('cards')
-      cards.get('').then(res=> {
-        commit('setCard', res.data)
+    setPlayer({commit, dispatch}) {
+      api.get('hand').then(res=> {
+        commit('setPlayerCard', res.data)
       })
     },
     fight({state}, out) {

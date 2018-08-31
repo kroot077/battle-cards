@@ -1,14 +1,11 @@
 <template>
     <div class="player">
         {{player.name}}
+        {{player.img}}
         <div class="playerCards" v-for="player in playerCards" :key="player.id" @click="setCard(player)">
-            {{player.playerCards.hand.name}}
-            {{player.playerCards.hand.img}}
-            <div>
-                {{player.playerCards.hand.attack}}
-                {{player.playerCards.hand.health}}
-                {{player.playerCards.hand.defense}}
-            </div>
+            {{player.attack}}
+            {{player.health}}
+            {{player.defense}}
         </div>
         <!--<div v-if="player.playerCards.total = 0">
             <button></button>
@@ -31,6 +28,9 @@
                 this.$store.dispatch("setPlayer", player)
             },
             defeatedCard() {
+                if(this.setPlayer.health = 0) {
+                    
+                }
                 this.$store.remainingCards--
             }
         }
