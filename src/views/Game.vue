@@ -4,13 +4,13 @@
       <player/>
       <opponent/>
     </div>
-    <!-- <form @submit.prevent="startGame" v-else>
+    <form @submit.prevent="startGame" v-else>
       <input type="text" v-model="gameConfig.playerName">
       <input type="text" v-model="gameConfig.opponents">
       <button type="submit" @click="startGame">Start Game</button>
-    </form> -->
-    <div v-if="setPlayer && setOpponent">
-      <button type="button" @click="Fight">Fight</button>
+    </form>
+    <div>
+      <button type="button" @click="fight">Fight</button>
     </div>
   </div>
 </template>
@@ -27,6 +27,12 @@ export default {
       gameConfig: {
         opponents: 1,
         set: 2
+      },
+      attackInfo: {
+        	"playerId": "",
+          "playerCardId": "",
+          "opponentId": "",
+          "opponentCardId": ""
       }
     }
   },
@@ -35,7 +41,7 @@ export default {
       return this.$store.state.game
     },
     playerCards() {
-      return this.$store.state.playerCards
+      return this.$store.state.game
     },
     opponentCards() {
       return this.$store.state.opponentCards
@@ -44,13 +50,10 @@ export default {
   methods: {
     startGame() {
       this.$store.dispatch("startGame", this.gameConfig/*this. as we already have a gameConfig*/)
+    },
+    fight() {
+      
     }
-    // fight() {
-    //   "playerId": "",
-    //   "playerCardId": "",
-    //   "opponentId": "",
-    //   "opponentCardId": ""
-    // }
   },
   components: {
       player,

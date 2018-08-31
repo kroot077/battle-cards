@@ -20,7 +20,7 @@
         },
         computed: {
             playerCards() {
-                return this.$store.state.playerCards
+                return this.$store.state.game.players[0].hand
             }
         },
         methods: {
