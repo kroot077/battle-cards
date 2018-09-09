@@ -17,8 +17,8 @@
 
 <script>
 // @ is an alias to /src
-import player from '@/components/Player.vue'
-import opponent from '@/components/Opponent.vue'
+import Player from '@/components/Player.vue'
+import Opponent from '@/components/Opponent.vue'
 
 export default {
   name: 'Game',
@@ -51,13 +51,13 @@ export default {
     startGame() {
       this.$store.dispatch("startGame", this.gameConfig/*this. as we already have a gameConfig*/)
     },
-    fight() {
+    // fight() {
       
-    }
+    // }
   },
   components: {
-      player,
-      opponent
+      Player,
+      Opponent
   }
 }
 </script>

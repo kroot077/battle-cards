@@ -15,8 +15,9 @@
 
 <script>
     export default {
+        name: "player",
         mounted() {
-            this.$store.dispatch("player")
+            this.$store.dispatch("getPlayer")
         },
         computed: {
             playerCards() {
@@ -24,14 +25,8 @@
             }
         },
         methods: {
-            setPlayer() {
-                this.$store.dispatch("setPlayer", player)
-            },
-            defeatedCard() {
-                if(this.setPlayer.health = 0) {
-                    
-                }
-                this.$store.remainingCards--
+            setPlayer(hand) {
+                this.$store.dispatch("setPlayer", hand)
             }
         }
     }

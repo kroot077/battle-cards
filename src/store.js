@@ -12,11 +12,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    game: {}
+    game: {},
+    player: [],
+    opponents: []
   },
   mutations: {
     setGame(state, game) {
       state.game = game
+    },
+    setPlayer(state, cards){
+      state.player = cards
+    },
+    setOpponent(state, cards){
+      state.opponents = cards
     }
   },
   actions: {
@@ -25,14 +33,19 @@ export default new Vuex.Store({
         commit('setGame', res.data)
       })
     },
-    setPlayer({commit, dispatch}) {
-      api.get('hand').then(res=> {
-        commit('setPlayerCard', res.data)
+    getGame({commit, dispatch}, gameId) {
+      api.get('/' + gameId) .then(res => {
+        commit('setGame', res.data)
       })
     },
-    fight({state}, out) {
-      let newHealth = state.card.health - state.card.attack[out]
-      commit('setHealth', newHealth)
-    }
+    getPlayer({commit, dispatch}) {
+      api.get('player').then(res=> {
+        commit('setPlayer', res.data)
+      })
+    },
+    // fight({state}, out) {
+    //   let newHealth = state.card.health - state.card.attack[out]
+    //   commit('setHealth', newHealth)
+    // }
   }
 })
