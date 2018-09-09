@@ -12,6 +12,7 @@
 
 <script>
     export default {
+        name: "Opponent",
         mounted() {
             this.$store.dispatch("opponent")
         },
@@ -22,7 +23,7 @@
         // },
         computed: {
             opponentCards() {
-                return this.$store.state.game.players[1].hand
+                return this.$store.state.game.opponents[1]
             }
         },
         methods: {

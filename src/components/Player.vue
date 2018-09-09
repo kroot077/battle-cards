@@ -1,11 +1,11 @@
 <template>
     <div class="player">
-        {{player.name}}
-        {{player.img}}
-        <div class="playerCards" v-for="player in playerCards" :key="player.id" @click="setCard(player)">
-            {{player.attack}}
-            {{player.health}}
-            {{player.defense}}
+        {{card.name}}
+        {{card.img}}
+        <div class="playerCards" v-for="card in playerCards" :key="card.id" @click="setPlayer(hand)">
+            {{card.attack}}
+            {{card.health}}
+            {{card.defense}}
         </div>
         <!--<div v-if="player.playerCards.total = 0">
             <button></button>
@@ -15,18 +15,18 @@
 
 <script>
     export default {
-        name: "player",
+        name: "Player",
         mounted() {
             this.$store.dispatch("getPlayer")
         },
         computed: {
             playerCards() {
-                return this.$store.state.game.players[0].hand
+                return this.$store.state.game.players[0]
             }
         },
         methods: {
-            setPlayer(hand) {
-                this.$store.dispatch("setPlayer", hand)
+            setPlayer(card) {
+                this.$store.dispatch("setPlayer", card)
             }
         }
     }

@@ -13,18 +13,18 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     game: {},
-    player: [],
+    players: [],
     opponents: []
   },
   mutations: {
     setGame(state, game) {
       state.game = game
     },
-    setPlayer(state, cards){
-      state.player = cards
+    setPlayer(state, card){
+      state.players = card
     },
-    setOpponent(state, cards){
-      state.opponents = cards
+    setOpponent(state, card){
+      state.opponents = card
     }
   },
   actions: {
